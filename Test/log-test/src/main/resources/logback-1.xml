@@ -1,0 +1,86 @@
+<!--
+   If instructed to do so, logback-classic will scan for changes in its configuration file and automatically
+   reconfigure itself when the configuration file changes. In order to instruct logback-classic to scan for
+   changes in its configuration file and to automatically re-configure itself set the scan attribute of the
+    <configuration> element to true, as shown next
+-->
+<configuration scan="true" scanPeriod="5 seconds" debug="true">
+    <!--
+        ConsoleAppender
+        FileAppender      :把日志添加到文件，有以下子节点：
+        RollingFileAppender  :滚动记录文件，先将日志记录到指定文件，当符合某个条件时，将日志记录到其他文件。有以下子节点：
+
+        rollingPolicy:
+            TimeBasedRollingPolicy
+            FixedWindowRollingPolicy
+
+        triggeringPolicy
+            SizeBasedTriggeringPolicy
+            -->
+
+    <!--在这个文件中定义常量，比如下面的USER_HOME常量 -->
+    <!--<property file="src/main/java/chapters/configuration/variables1.properties" />-->
+
+    <!-- 或者在下面自定义属性，scope: LOCAL SCOPE/CONTEXT SCOPE/SYSTEM SCOPE-->
+    <!--<property scope="context" name="nodeId" value="firstNode" />-->
+
+    <!-- 可以加载多个配置文件-->
+    <!--<include file="src/main/java/chapters/configuration/includedConfig.xml"/>-->
+    <timestamp key="bySecond" datePattern="yyyy-MM-dd'T'HH:mm:ss.SSS"/>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- encoders are assigned the type
+             ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>myApp.log</file>
+        <append>true</append>
+        <!--<file>${USER_HOME}/myApp.log</file>-->
+
+        <!-- Support multiple-JVM writing to the same log file -->
+        <prudent>true</prudent>
+        <encoder>
+            <pattern>%date |%level| [%thread] %logger{10} [%file:%line] - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="admin" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>admin.log</file>
+        <append>true</append>
+        <encoder>
+            <pattern>%date |%level| [%thread] %logger{10} [%file:%line] - %msg%n</pattern>
+        </encoder>
+        <!-- 固定产生多少个日志文件-->
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <minIndex>0</minIndex>
+            <maxIndex>2</maxIndex>
+            <!--<fileNamePattern>admin.%i.log.zip</fileNamePattern>-->
+            <fileNamePattern>admin.%i.log</fileNamePattern>
+        </rollingPolicy>
+
+        <!--每个文件的大小 -->
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>1MB</maxFileSize>
+        </triggeringPolicy>
+
+    </appender>
+
+    <!--没有设置addtivity，默认为true，将此loger的打印信息向上级传递；-->
+    <!--没有设置appender，此loger本身不打印任何信息。-->
+    <logger name="test1" level="warn">
+        <appender-ref ref="FILE"/>
+    </logger>
+
+    <logger name="admin" level="info">
+        <appender-ref ref="admin"/>
+    </logger>
+
+    <!-- 默认的全局配置 -->
+    <root level="debug">
+        <appender-ref ref="STDOUT"/>
+    </root>
+</configuration>

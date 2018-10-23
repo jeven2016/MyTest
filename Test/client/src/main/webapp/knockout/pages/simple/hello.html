@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../../libs/jquery.js"></script>
+    <script src="../../libs/knockout.js"></script>
+</head>
+<body>
+<div>
+    <table data-bind="foreach: list">
+        <tr>
+
+            <td><!-- ko text:$data--><!-- /ko --></td>
+
+        </tr>
+    </table>
+    <input type="button" value="Add" data-bind="click:add"/>
+    <input type="button" value="Delete All" data-bind="click:delAll"/>
+</div>
+
+
+<script language="JavaScript">
+    var PersonViewModel = {
+        list: ko.observableArray(["1,", "2,"]),
+        add: function () {
+            this.list.push(this.list().length + 1);
+        },
+        delAll:function(){
+            this.list.removeAll();
+        }
+    };
+    ko.applyBindings(PersonViewModel);
+
+</script>
+</body>
+</html>

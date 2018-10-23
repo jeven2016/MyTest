@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../../libs/jquery.js"></script>
+    <script data-main="../../libs/require_config.js" src="../../libs/require.js"></script>
+</head>
+<body>
+
+<script language="javascript">
+    require(["text", "text!../pages/simple/template1.html"], function (text, html) {
+        $("#page").html(html);
+    })
+</script>
+<div id="page"></div>
+
+</body>
+</html>

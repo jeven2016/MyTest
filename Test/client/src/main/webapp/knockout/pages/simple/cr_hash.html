@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../../libs/signals.js"></script>
+    <script src="../../libs/hasher.js"></script>
+    <script src="../../libs/crossroads.js"></script>
+    <script src="../../libs/knockout.js"></script>
+    <script src="../../libs/jquery.js"></script>
+</head>
+<body>
+<div id="testId">
+    ID:<input type="text" name="idInput" data-bind="value:id">
+    <input type="button" value="test route" data-bind="click:testRoute">
+    <a href="/path/why">go</a>
+</div>
+
+
+<script language="JavaScript">
+    crossroads.addRoute("/path/{id}", function (id) {
+        alert("id is :" + id);
+    })
+
+    function PageVM() {
+        this.id = ko.observable("path/1");
+        this.testRoute = function () {
+            crossroads.parse(this.id());
+            hasher.setHash(this.id());
+        }
+    }
+
+
+    //setup hasher
+    function parseHash(newHash, oldHash) {
+        crossroads.parse(newHash);
+    }
+    hasher.initialized.add(parseHash); //parse initial hash
+    hasher.changed.add(parseHash); //parse hash changes
+    hasher.init(); //start listening for history change
+
+    //update URL fragment generating new history record
+
+
+    ko.applyBindings(new PageVM(), $("testId")[0]);
+</script>
+
+</body>
+</html>

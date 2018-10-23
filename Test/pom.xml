@@ -1,0 +1,564 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.wzjtech</groupId>
+    <artifactId>Test</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>akka</module>
+        <module>assembly-test</module>
+        <module>client</module>
+        <module>copy_beans</module>
+        <module>ejb3-test</module>
+        <module>guice-io</module>
+        <module>jdk8-test</module>
+        <module>jersey-test</module>
+        <module>jpa-fulltest</module>
+        <module>jpa-test</module>
+        <module>kyro</module>
+        <module>log-test</module>
+        <module>netty</module>
+        <module>soap-test</module>
+        <module>spring-test</module>
+        <module>zookeeper-test</module>
+        <module>storm-kafka</module>
+    </modules>
+    <packaging>pom</packaging>
+
+    <properties>
+
+        <!-- 注意以下地址在进行编译时必须更改为正确的地址 -->
+        <!--<product.dir>/opt/projects/allProjects/gdp/products/</product.dir>-->
+        <spring-data-commons.version>1.9.1.RELEASE</spring-data-commons.version>
+        <spring.version>4.1.2.RELEASE</spring.version>
+        <spring-data-jpa.version>1.7.1.RELEASE</spring-data-jpa.version>
+        <spring-data-mongodb.version>1.7.0.RELEASE</spring-data-mongodb.version>
+        <mongo-java-driver.version>3.0.1</mongo-java-driver.version>
+        <log4j.version>1.2.17</log4j.version>
+        <!--<commons-logging.version>1.1.3</commons-logging.version>-->
+        <commons-lang3.version>3.3.2</commons-lang3.version>
+        <commons-validator.version>1.4.1</commons-validator.version>
+        <slf4j-log4j13.version>1.0.1</slf4j-log4j13.version>
+        <junit.version>4.9</junit.version>
+
+        <!-- web version -->
+        <javax.servlet-api.version>3.1.0</javax.servlet-api.version>
+        <javax.servlet.jsp-api.version>2.3.1</javax.servlet.jsp-api.version>
+
+        <!--  apache -->
+        <commons-beanutils.version>1.9.2</commons-beanutils.version>
+
+        <!-- database -->
+        <druid.version>1.0.9</druid.version>
+        <mysql-connector-java.version>5.1.34</mysql-connector-java.version>
+
+        <javax.validation.version>1.1.0.Final</javax.validation.version>
+        <javax.el-api.version>3.0.0</javax.el-api.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+
+            <!-- Database Driver & DataSource -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <!--阿里数据源-->
+                <version>${druid.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql-connector-java.version}</version>
+            </dependency>
+            <!-- -->
+
+            <!-- Srping -->
+            <dependency>
+                <groupId>org.springframework.data</groupId>
+                <artifactId>spring-data-commons</artifactId>
+                <version>${spring-data-commons.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-jms</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-core</artifactId>
+                <version>${spring.version}</version>
+                <!-- To switch off commons-logging, the commons-logging dependency mustn’t be present in the classpath at runtime.
+               Because I'd like to use logback instead of commons-logging framework.
+               -->
+                <exclusions>
+                    <exclusion>
+                        <groupId>commons-logging</groupId>
+                        <artifactId>commons-logging</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-web</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context</artifactId>
+                <version>${spring.version}</version>
+                <!-- To switch off commons-logging, the commons-logging dependency mustn’t be present in the classpath at runtime.
+                Because I'd like to use logback instead of commons-logging framework.
+                -->
+                <exclusions>
+                    <exclusion>
+                        <groupId>commons-logging</groupId>
+                        <artifactId>commons-logging</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-webmvc</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-test</artifactId>
+                <version>${spring.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-jdbc</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.data</groupId>
+                <artifactId>spring-data-mongodb</artifactId>
+                <version>${spring-data-mongodb.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context-support</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.data</groupId>
+                <artifactId>spring-data-jpa</artifactId>
+                <version>${spring-data-jpa.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.code.simple-spring-memcached</groupId>
+                <artifactId>simple-spring-memcached</artifactId>
+                <version>3.5.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-orm</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-oxm</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-tx</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.batch</groupId>
+                <artifactId>spring-batch-test</artifactId>
+                <version>3.0.2.RELEASE</version>
+                <scope>test</scope>
+            </dependency>
+            <!-- End Srping -->
+
+            <dependency>
+                <groupId>cglib</groupId>
+                <artifactId>cglib</artifactId>
+                <version>3.1</version>
+            </dependency>
+            <dependency>
+                <groupId>cglib</groupId>
+                <artifactId>cglib-nodep</artifactId>
+                <version>3.1</version>
+            </dependency>
+
+            <!-- AspectJ-->
+            <dependency>
+                <groupId>org.aspectj</groupId>
+                <artifactId>aspectjrt</artifactId>
+                <version>1.8.4</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.aspectj</groupId>
+                <artifactId>aspectjtools</artifactId>
+                <version>1.8.4</version>
+            </dependency>
+
+            <!-- Hibernate -->
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-validator</artifactId>
+                <version>5.1.2.Final</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.validation</groupId>
+                <artifactId>validation-api</artifactId>
+                <version>${javax.validation.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.hibernate.javax.persistence</groupId>
+                <artifactId>hibernate-jpa-2.1-api</artifactId>
+                <version>1.0.0.Final</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-ehcache</artifactId>
+                <version>4.3.6.Final</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-oscache</artifactId>
+                <version>3.6.10.Final</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-jmx</artifactId>
+                <version>3.5.6-Final</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-core</artifactId>
+                <version>4.3.8.Final</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-entitymanager</artifactId>
+                <version>4.3.8.Final</version>
+            </dependency>
+            <!-- Hibernate End -->
+
+            <dependency>
+                <groupId>javax.el</groupId>
+                <artifactId>javax.el-api</artifactId>
+                <version>${javax.el-api.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mongodb</groupId>
+                <artifactId>mongo-java-driver</artifactId>
+                <version>${mongo-java-driver.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>javax.servlet-api</artifactId>
+                <version>${javax.servlet-api.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>javax.servlet.jsp</groupId>
+                <artifactId>javax.servlet.jsp-api</artifactId>
+                <version>${javax.servlet.jsp-api.version}</version>
+                <scope>provided</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <!-- logback dependencies -->
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-core</artifactId>
+                <version>1.1.3</version>
+            </dependency>
+
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>1.1.3</version>
+            </dependency>
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-access</artifactId>
+                <version>1.1.3</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>1.7.12</version>
+            </dependency>
+            <!-- End logback dependencies-->
+
+            <!-- Unused dependencies -->
+            <!-- <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-log4j13</artifactId>
+                <version>${slf4j-log4j13.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>log4j</groupId>
+                <artifactId>log4j</artifactId>
+                <version>${log4j.version}</version>
+            </dependency>
+           <dependency>
+                <groupId>commons-logging</groupId>
+                <artifactId>commons-logging</artifactId>
+                <version>${commons-logging.version}</version>
+            </dependency>
+            -->
+            <!-- End -->
+
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons-lang3.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-validator</groupId>
+                <artifactId>commons-validator</artifactId>
+                <version>${commons-validator.version}</version>
+            </dependency>
+
+            <!-- apache bmf -->
+            <dependency>
+                <groupId>commons-beanutils</groupId>
+                <artifactId>commons-beanutils</artifactId>
+                <version>${commons-beanutils.version}</version>
+            </dependency>
+
+
+            <!-- 单元测试 -->
+            <!-- <plugin>
+                 <groupId>org.apache.maven.plugins</groupId>
+                 <artifactId>maven-surefire-plugin</artifactId>
+                 <version>2.13</version>
+                 <configuration>
+                     <argLine>-Xmx128M</argLine>
+                     <includes>
+                         <include>**/*Test*.java</include>
+                         <include>**/*Test.java</include>
+                         <include>**/*IT.java</include>
+                         <include>**/*TestCase.java</include>
+                     </includes>
+                 </configuration>
+             </plugin>-->
+
+            <!--<plugin>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>3.0</version>
+                <configuration>
+                    <locales>zh_CN</locales>
+                    <outputDirectory>${site.basedir}/target/site/${project.artifactId}</outputDirectory>
+                    <outputEncoding>UTF-8</outputEncoding>
+                    <inputEncoding>UTF-8</inputEncoding>
+                    <reportPlugins>
+                        &lt;!&ndash; 单元测试 &ndash;&gt;
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-surefire-plugin</artifactId>
+                            <version>2.13</version>
+                            <configuration>
+                                <argLine>-Xmx128M</argLine>
+                                <includes>
+                                    <include>**/*Test*.java</include>
+                                    <include>**/*Test.java</include>
+                                    <include>**/*IT.java</include>
+                                    <include>**/*TestCase.java</include>
+                                </includes>
+                            </configuration>
+                        </plugin>
+                        &lt;!&ndash; checkstyle 代码规范检查 &ndash;&gt;
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-checkstyle-plugin</artifactId>
+                            <version>2.9.1</version>
+                            <configuration>
+                                <configLocation>${support.basedir}/checkstyle_checks.xml</configLocation>
+                                <suppressionsLocation>${support.basedir}/checkstyle-suppressions.xml
+                                </suppressionsLocation>
+                                <suppressionsFileExpression>checkstyle.suppressions.file</suppressionsFileExpression>
+                            </configuration>
+                        </plugin>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-jxr-plugin</artifactId>
+                            <version>2.3</version>
+                            <configuration>
+                                <aggregate>true</aggregate>
+                            </configuration>
+                        </plugin>
+                        &lt;!&ndash; findbugs 静态分析工具 &ndash;&gt;
+                        <plugin>
+                            <groupId>org.codehaus.mojo</groupId>
+                            <artifactId>findbugs-maven-plugin</artifactId>
+                            <version>2.5.2</version>
+                            <configuration>
+                                <xmlOutput>true</xmlOutput>
+                            </configuration>
+                        </plugin>
+                        &lt;!&ndash; pmd Java程序代码检查工具 &ndash;&gt;
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-pmd-plugin</artifactId>
+                            <version>2.7.1</version>
+                        </plugin>
+                        &lt;!&ndash; cobertura 代码覆盖率工具 &ndash;&gt;
+                        <plugin>
+                            <groupId>org.codehaus.mojo</groupId>
+                            <artifactId>cobertura-maven-plugin</artifactId>
+                            <version>2.5.2</version>
+                            <configuration>
+                                <check>
+                                    <branchRate>85</branchRate>
+                                    <lineRate>85</lineRate>
+                                    <haltOnFailure>true</haltOnFailure>
+                                    <totalBranchRate>85</totalBranchRate>
+                                    <totalLineRate>85</totalLineRate>
+                                    <packageLineRate>85</packageLineRate>
+                                    <packageBranchRate>85</packageBranchRate>
+                                    <regexes>
+                                        <regex>
+                                            <pattern>todo.*</pattern>
+                                            <branchRate>90</branchRate>
+                                            <lineRate>80</lineRate>
+                                        </regex>
+                                    </regexes>
+                                </check>
+                                <instrumentation>
+                                    <ignores>
+                                        <ignore>todo.*</ignore>
+                                    </ignores>
+                                    <excludes>
+                                        <exclude>todo//**/*.class</exclude>
+                                    </excludes>
+                                </instrumentation>
+                            </configuration>
+                        </plugin>
+
+                        &lt;!&ndash; taglist报表 生成标注上@todo或TODO的项目的列表 &ndash;&gt;
+                        <plugin>
+                            <groupId>org.codehaus.mojo</groupId>
+                            <artifactId>taglist-maven-plugin</artifactId>
+                            <version>2.4</version>
+                        </plugin>
+
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-javadoc-plugin</artifactId>
+                            <version>2.7</version>
+                        </plugin>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-project-info-reports-plugin</artifactId>
+                            <version>2.1</version>
+                        </plugin>
+                    </reportPlugins>
+                    <port>9999</port>
+                </configuration>
+            </plugin>-->
+
+        </dependencies>
+    </dependencyManagement>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.18</version>
+                <configuration>
+                    <skipTests>true</skipTests>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.5</version>
+                <!--<configuration>
+                    <archive>
+                        <manifestFile>src/main/resources/META-INF/MANIFEST.MF</manifestFile>
+                    </archive>
+                </configuration>-->
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-ejb-plugin</artifactId>
+                <version>2.5</version>
+                <configuration>
+                    <ejbVersion>3.1</ejbVersion>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.9.1</version>
+                <configuration>
+                    <aggregate>true</aggregate>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.3</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
+
+        <!-- 全局编译插件 -非默认配置-->
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>2.4</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+    <distributionManagement>
+        <repository>
+            <id>user-release</id>
+            <name>Release</name>
+            <url>http://localhost:9000/nexus/content/repositories/releases/
+            </url>
+        </repository>
+
+        <snapshotRepository>
+            <id>user-snapshot</id>
+            <name>SNAPSHOTS</name>
+            <url>http://localhost:9000/nexus/content/repositories/snapshots/
+            </url>
+        </snapshotRepository>
+    </distributionManagement>
+
+</project>

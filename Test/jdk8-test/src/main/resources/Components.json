@@ -1,0 +1,13 @@
+[
+  {
+    "key": "adaptive",
+    "identifier": "compiler",
+    "interfaceClass": "com.alibaba.dubbo.common.compiler.Compiler",
+    "defaultKey": "jdk",
+    "items": {
+      "adaptive": "com.alibaba.dubbo.common.compiler.support.AdaptiveCompiler",
+      "jdk": "com.alibaba.dubbo.common.compiler.support.JdkCompiler",
+      "javassist": "com.alibaba.dubbo.common.compiler.support.JavassistCompiler"
+    }
+  }
+]

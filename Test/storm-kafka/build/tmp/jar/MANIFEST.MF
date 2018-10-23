@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Implementation-Title: Storm Test
+Implementation-Version: 1.0
+Main-Class: helloworld.FirstTopology
+

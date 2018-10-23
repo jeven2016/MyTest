@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Test.iml" filepath="$PROJECT_DIR$/Test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/akka/akka.iml" filepath="$PROJECT_DIR$/akka/akka.iml" />
+      <module fileurl="file://$PROJECT_DIR$/assembly-test/assembly-test.iml" filepath="$PROJECT_DIR$/assembly-test/assembly-test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/client/client.iml" filepath="$PROJECT_DIR$/client/client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/copy_beans/copy_beans.iml" filepath="$PROJECT_DIR$/copy_beans/copy_beans.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ejb3-test/ejb3-test.iml" filepath="$PROJECT_DIR$/ejb3-test/ejb3-test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/guice-io/guice-io.iml" filepath="$PROJECT_DIR$/guice-io/guice-io.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/httpclient-test.iml" filepath="$PROJECT_DIR$/.idea/modules/httpclient-test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/httpclient-test_main.iml" filepath="$PROJECT_DIR$/.idea/modules/httpclient-test_main.iml" group="httpclient-test" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/httpclient-test_test.iml" filepath="$PROJECT_DIR$/.idea/modules/httpclient-test_test.iml" group="httpclient-test" />
+      <module fileurl="file://$PROJECT_DIR$/jdk8-test/jdk8-test.iml" filepath="$PROJECT_DIR$/jdk8-test/jdk8-test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jersey-test/jersey-test.iml" filepath="$PROJECT_DIR$/jersey-test/jersey-test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jpa-fulltest/jpa-fulltest.iml" filepath="$PROJECT_DIR$/jpa-fulltest/jpa-fulltest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jpa-test/jpa-test.iml" filepath="$PROJECT_DIR$/jpa-test/jpa-test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/kyro/kryo.iml" filepath="$PROJECT_DIR$/kyro/kryo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/log-test/log-test.iml" filepath="$PROJECT_DIR$/log-test/log-test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/netty/netty.iml" filepath="$PROJECT_DIR$/netty/netty.iml" />
+      <module fileurl="file://$PROJECT_DIR$/soap-test/soap-test.iml" filepath="$PROJECT_DIR$/soap-test/soap-test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-test/spring-test.iml" filepath="$PROJECT_DIR$/spring-test/spring-test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/storm-kafka.iml" filepath="$PROJECT_DIR$/.idea/modules/storm-kafka.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/storm-kafka_main.iml" filepath="$PROJECT_DIR$/.idea/modules/storm-kafka_main.iml" group="storm-kafka" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/storm-kafka_test.iml" filepath="$PROJECT_DIR$/.idea/modules/storm-kafka_test.iml" group="storm-kafka" />
+      <module fileurl="file://$PROJECT_DIR$/zookeeper-test/zookeeper-test.iml" filepath="$PROJECT_DIR$/zookeeper-test/zookeeper-test.iml" />
+    </modules>
+  </component>
+</project>

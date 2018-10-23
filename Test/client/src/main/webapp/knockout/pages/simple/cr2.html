@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../../libs/signals.js"></script>
+    <script src="../../libs/hasher.js"></script>
+    <script src="../../libs/crossroads.js"></script>
+    <script src="../../libs/knockout-3.3.0.debug.js"></script>
+    <script src="../../libs/jquery.js"></script>
+</head>
+<body>
+<nav>
+    <a href="/home">home</a>
+    <a href="/section1">section1</a>
+    <a href="/section2">section2</a>
+    <a href="/section3">section3</a>
+</nav>
+<div id="results"></div>
+<script>
+    var r = document.getElementById('results');
+    crossroads.addRoute('/{section}', function(section){
+        r.innerHTML='<h1>' + section + '</h2>'
+    });
+    var a = document.querySelectorAll('a')
+    for(i=0;i<a.length;i++){
+        a[i].onclick=function(e){
+            e.preventDefault();
+            crossroads.parse('/' + this.href.split('/').pop());
+        }
+    }
+    crossroads.parse('/home');
+</script>
+</body>
+</html>

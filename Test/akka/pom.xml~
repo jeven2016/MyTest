@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>Test</artifactId>
+        <groupId>com.wzjtech</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>akka</artifactId>
+
+<dependencies>
+   <dependency>
+  <groupId>com.typesafe.akka</groupId>
+  <artifactId>akka-zeromq_2.10.0-M7</artifactId>
+  <version>2.1-M2</version>
+</dependency> 
+<dependency>
+  <groupId>com.typesafe.akka</groupId>
+  <artifactId>akka</artifactId>
+  <version>2.2-M3</version>
+  <type>pom</type>
+</dependency>
+<dependency>
+  <groupId>com.typesafe.akka</groupId>
+  <artifactId>akka-actor_2.10.0-RC1</artifactId>
+  <version>2.1.0-RC1</version>
+</dependency>
+<dependency>
+  <groupId>com.typesafe.akka</groupId>
+  <artifactId>akka-slf4j_2.10.0-RC2</artifactId>
+  <version>2.1.0-RC2</version>
+</dependency>
+<dependency>
+  <groupId>org.zeromq</groupId>
+  <artifactId>zeromq-scala-binding_2.11.0-M3</artifactId>
+  <version>0.0.7</version>
+</dependency>
+<dependency>
+  <groupId>com.google.guice</groupId>
+  <artifactId>com.springsource.com.google.inject</artifactId>
+  <version>2.0.0</version>
+</dependency>
+<dependency>
+  <groupId>redis.clients</groupId>
+  <artifactId>jedis</artifactId>
+  <version>2.7.0</version>
+</dependency>
+<dependency>
+  <groupId>org.springframework.data</groupId>
+  <artifactId>spring-data-redis</artifactId>
+  <version>1.6.0.RELEASE</version>
+</dependency>
+</dependencies>
+</project>

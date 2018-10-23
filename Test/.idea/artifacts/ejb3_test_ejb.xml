@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="ejb-jar" name="ejb3-test:ejb">
+    <output-path>$PROJECT_DIR$/ejb3-test/target</output-path>
+    <root id="archive" name="ejb3-test-1.0-SNAPSHOT.jar">
+      <element id="artifact" artifact-name="ejb3-test:ejb exploded" />
+    </root>
+  </artifact>
+</component>

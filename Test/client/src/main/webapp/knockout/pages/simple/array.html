@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../../libs/jquery.js"></script>
+    <script src="../../libs/knockout.js"></script>
+</head>
+<body>
+<div>
+    Label:<span data-bind="text: age"> </span>
+    <input type="text" name="hello" data-bind="value: personName">
+</div>
+
+
+<script language="JavaScript">
+    var PersonViewModel = {
+        personName: "wzj",
+        age: 166
+    };
+    ko.applyBindings(PersonViewModel);
+
+</script>
+
+<hr>
+<div id="sp1">
+    <input value="unbind" type="button" onclick="unBind()"/>
+
+    <p>First name: <strong data-bind="text: firstName"></strong></p>
+
+    <p>Last name: <strong data-bind="text: lastName"></strong></p>
+
+    <p>First name: <input data-bind="value: firstName"/></p>
+
+    <p>Last name: <input data-bind="value: lastName"/></p>
+
+    <p>Computed name: <input data-bind="value: comName"/></p>
+
+    <p><input type="button" data-bind="click:upperName" value="设置为大写 name"></p>
+
+    <p>Message: <input data-bind="value: message"/></p>
+
+    <p><input type="button" data-bind="click:updateMsg" value="更改Message"></p>
+</div>
+<script language="JavaScript">
+    var NameViewModel = function () {
+        this.firstName = ko.observable("wzj");
+        this.lastName = ko.observable("xxx");
+        this.comName = ko.computed(function () {
+            return this.firstName() + "-" + this.lastName() + "!!";
+        }, this);
+        this.upperName = function () {
+            var firstName = this.firstName();
+            firstName = firstName.toUpperCase();
+            var lastName = this.lastName();
+            lastName = lastName.toUpperCase();
+            this.firstName(firstName);
+            this.lastName(lastName);
+        };
+
+        this.message = ko.observable("hello");
+        this.updateMsg = function (val) {
+            alert("val=" + val);
+            this.message("val");
+        }
+    };
+    //通过scope绑定范围，否则不允许绑定两次
+    ko.applyBindings(new NameViewModel(), $("#sp1")[0]);
+
+    function unBind() {
+        //解除绑定
+        ko.cleanNode($('#sp1')[0]);
+    }
+
+
+</script>
+</body>
+</html>
